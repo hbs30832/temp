@@ -30,7 +30,7 @@ import { PostsService } from './posts.service';
 export declare class PostsController {
     private readonly postsService;
     constructor(postsService: PostsService);
-    createPost(post: PostRequestDto, user: User, files: Express.Multer.File[]): Promise<import("./posts.schema").Post>;
+    createPost(post: PostRequestDto, files: Express.Multer.File[]): Promise<import("./posts.schema").Post>;
     getAllPost(page: number): Promise<Omit<import("./posts.schema").Post & {
         _id: import("mongoose").Types.ObjectId;
     }, never>[]>;

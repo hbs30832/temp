@@ -24,8 +24,8 @@ let PostsController = class PostsController {
     constructor(postsService) {
         this.postsService = postsService;
     }
-    async createPost(post, user, files) {
-        return await this.postsService.createPost(user.id, post, files);
+    async createPost(post, files) {
+        return await this.postsService.createPost('636f6426afc9d1eb9a44f43d', post, files);
     }
     async getAllPost(page) {
         return await this.postsService.getAllPost(page);
@@ -55,11 +55,9 @@ __decorate([
     }),
     (0, common_1.UseInterceptors)((0, platform_express_1.FilesInterceptor)('images')),
     __param(0, (0, common_1.Body)()),
-    __param(1, (0, user_decorator_1.CurrentUser)()),
-    __param(2, (0, common_1.UploadedFiles)()),
+    __param(1, (0, common_1.UploadedFiles)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [posts_request_dto_1.PostRequestDto,
-        users_schema_1.User, Array]),
+    __metadata("design:paramtypes", [posts_request_dto_1.PostRequestDto, Array]),
     __metadata("design:returntype", Promise)
 ], PostsController.prototype, "createPost", null);
 __decorate([

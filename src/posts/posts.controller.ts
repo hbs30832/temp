@@ -37,10 +37,13 @@ export class PostsController {
   @UseInterceptors(FilesInterceptor('images'))
   async createPost(
     @Body() post: PostRequestDto,
-    @CurrentUser() user: User,
     @UploadedFiles() files: Express.Multer.File[],
   ) {
-    return await this.postsService.createPost(user.id, post, files);
+    return await this.postsService.createPost(
+      '636f6426afc9d1eb9a44f43d',
+      post,
+      files,
+    );
   }
 
   @ApiOperation({
