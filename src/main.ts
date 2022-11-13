@@ -41,7 +41,7 @@ async function bootstrap() {
   SwaggerModule.setup('docs', app, document);
 
   app.enableCors({
-    origin: '*',
+    origin: 'http://localhost:3000',
     credentials: true,
   });
 
