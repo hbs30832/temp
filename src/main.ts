@@ -7,44 +7,41 @@ import { SuccessInterceptor } from './common/interceptor/success.interceptor';
 import * as expressBasicAuth from 'express-basic-auth';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import * as path from 'path';
-import * as cookireParser from 'cookie-parser'
+import * as cookireParser from 'cookie-parser';
 
 async function bootstrap() {
-    const app = await NestFactory.create<NestExpressApplication>(AppModule);
-    app.useGlobalPipes(new ValidationPipe());
-    app.useGlobalFilters(new HttpExceptionFilter());
-    app.useGlobalInterceptors(new SuccessInterceptor());
-    app.use(cookireParser());
-    app.use(
-        ['/docs/', '/docs-json'],
-        expressBasicAuth({
-            challenge: true,
-            users: {
-                [process.env.SWAGGER_USER]: process.env.SWAGGER_PASSWORD,
-            },
-        }),
-    );
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalFilters(new HttpExceptionFilter());
+  app.useGlobalInterceptors(new SuccessInterceptor());
+  app.use(cookireParser());
+  app.use(
+    ['/docs/', '/docs-json'],
+    expressBasicAuth({
+      challenge: true,
+      users: {
+        [process.env.SWAGGER_USER]: process.env.SWAGGER_PASSWORD,
+      },
+    }),
+  );
 
-    app.useStaticAssets(path.join(__dirname, '/common', '/uploads'), {
-        prefix: '/media',
-    });
+  app.useStaticAssets(path.join(__dirname, '/common', '/uploads'), {
+    prefix: '/media',
+  });
 
-    const PORT = process.env.PORT;
+  const PORT = process.env.PORT;
 
-    const config = new DocumentBuilder()
-        .setTitle('Nepp Blog')
-        .setDescription('Nepp Blog API description')
-        .setVersion('1.0')
-        .build();
+  const config = new DocumentBuilder()
+    .setTitle('Nepp Blog')
+    .setDescription('Nepp Blog API description')
+    .setVersion('1.0')
+    .build();
 
-    const document: OpenAPIObject = SwaggerModule.createDocument(app, config);
-    SwaggerModule.setup('docs', app, document);
+  const document: OpenAPIObject = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('docs', app, document);
 
-    app.enableCors({
-        origin: true,
-        credentials: true,
-    });
+  app.enableCors();
 
-    await app.listen(PORT);
+  await app.listen(PORT);
 }
 bootstrap();
