@@ -16,7 +16,6 @@ exports.PostsController = void 0;
 const common_1 = require("@nestjs/common");
 const platform_express_1 = require("@nestjs/platform-express");
 const swagger_1 = require("@nestjs/swagger");
-const jwt_guard_1 = require("../auth/jwt/jwt.guard");
 const user_decorator_1 = require("../common/decorators/user.decorator");
 const users_schema_1 = require("../users/users.schema");
 const posts_request_dto_1 = require("./dto/posts.request.dto");
@@ -55,7 +54,6 @@ __decorate([
         type: 'file',
     }),
     (0, common_1.UseInterceptors)((0, platform_express_1.FilesInterceptor)('images')),
-    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, user_decorator_1.CurrentUser)()),
     __param(2, (0, common_1.UploadedFiles)()),
@@ -69,7 +67,6 @@ __decorate([
         summary: '모든 게시물 조회',
     }),
     (0, common_1.Get)('all/:page'),
-    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard),
     __param(0, (0, user_decorator_1.CurrentUser)()),
     __param(1, (0, common_1.Param)('page', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
@@ -101,7 +98,6 @@ __decorate([
     (0, swagger_1.ApiOperation)({
         summary: '좋아요',
     }),
-    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard),
     (0, common_1.Patch)('/like/:post_id'),
     __param(0, (0, common_1.Param)('post_id')),
     __param(1, (0, user_decorator_1.CurrentUser)()),
