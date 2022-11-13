@@ -21,13 +21,13 @@ let PostsRepository = class PostsRepository {
     constructor(postModel) {
         this.postModel = postModel;
     }
-    async findAll(currentUser, page) {
+    async findAll(page) {
         const result = await this.postModel
             .find()
             .sort({ _id: -1 })
             .populate('comments')
             .limit(10 * page);
-        return result.filter((post) => post.author_id !== currentUser._id);
+        return result;
     }
     async findByUserId(author_id) {
         return await this.postModel.find({ author_id }).populate('comments');

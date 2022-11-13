@@ -27,8 +27,8 @@ let PostsController = class PostsController {
     async createPost(post, user, files) {
         return await this.postsService.createPost(user.id, post, files);
     }
-    async getAllPost(currentUser, page) {
-        return await this.postsService.getAllPost(currentUser, page);
+    async getAllPost(page) {
+        return await this.postsService.getAllPost(page);
     }
     async getByAuthorId(author_id) {
         return await this.postsService.getByAuthorId(author_id);
@@ -67,10 +67,9 @@ __decorate([
         summary: '모든 게시물 조회',
     }),
     (0, common_1.Get)('all/:page'),
-    __param(0, (0, user_decorator_1.CurrentUser)()),
-    __param(1, (0, common_1.Param)('page', common_1.ParseIntPipe)),
+    __param(0, (0, common_1.Param)('page', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [users_schema_1.User, Number]),
+    __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], PostsController.prototype, "getAllPost", null);
 __decorate([

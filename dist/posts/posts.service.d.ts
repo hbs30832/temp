@@ -32,7 +32,7 @@ export declare class PostsService {
     private readonly postsRepository;
     private readonly awsService;
     constructor(postsRepository: PostsRepository, awsService: AwsService);
-    getAllPost(currentUser: User, page: number): Promise<Omit<import("./posts.schema").Post & {
+    getAllPost(page: number): Promise<Omit<import("./posts.schema").Post & {
         _id: import("mongoose").Types.ObjectId;
     }, never>[]>;
     getByAuthorId(author_id: string): Promise<Omit<import("./posts.schema").Post & {

@@ -18,8 +18,8 @@ let PostsService = class PostsService {
         this.postsRepository = postsRepository;
         this.awsService = awsService;
     }
-    async getAllPost(currentUser, page) {
-        return await this.postsRepository.findAll(currentUser, page);
+    async getAllPost(page) {
+        return await this.postsRepository.findAll(page);
     }
     async getByAuthorId(author_id) {
         return await this.postsRepository.findByUserId(author_id);

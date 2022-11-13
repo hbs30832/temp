@@ -25,12 +25,11 @@
 import { Model } from 'mongoose';
 import { Post } from './posts.schema';
 import { PostCreateDto } from './dto/posts.create.dto';
-import { User } from 'src/users/users.schema';
 import { PostRequestDto } from './dto/posts.request.dto';
 export declare class PostsRepository {
     private readonly postModel;
     constructor(postModel: Model<Post>);
-    findAll(currentUser: User, page: number): Promise<Omit<Post & {
+    findAll(page: number): Promise<Omit<Post & {
         _id: import("mongoose").Types.ObjectId;
     }, never>[]>;
     findByUserId(author_id: string): Promise<Omit<Post & {

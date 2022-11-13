@@ -31,7 +31,7 @@ export declare class PostsController {
     private readonly postsService;
     constructor(postsService: PostsService);
     createPost(post: PostRequestDto, user: User, files: Express.Multer.File[]): Promise<import("./posts.schema").Post>;
-    getAllPost(currentUser: User, page: number): Promise<Omit<import("./posts.schema").Post & {
+    getAllPost(page: number): Promise<Omit<import("./posts.schema").Post & {
         _id: import("mongoose").Types.ObjectId;
     }, never>[]>;
     getByAuthorId(author_id: string): Promise<Omit<import("./posts.schema").Post & {

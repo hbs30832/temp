@@ -47,11 +47,8 @@ export class PostsController {
     summary: '모든 게시물 조회',
   })
   @Get('all/:page')
-  async getAllPost(
-    @CurrentUser() currentUser: User,
-    @Param('page', ParseIntPipe) page: number,
-  ) {
-    return await this.postsService.getAllPost(currentUser, page);
+  async getAllPost(@Param('page', ParseIntPipe) page: number) {
+    return await this.postsService.getAllPost(page);
   }
 
   @ApiOperation({
